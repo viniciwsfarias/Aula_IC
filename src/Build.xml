@@ -1,0 +1,41 @@
+<project name="Sample Project" default="main" basedir=".">
+	<description>
+		
+	</description>
+	
+
+	<property name="build.dir" location="bin" />
+	<property name="doc.dir" location="doc" />
+	<property name="source.dir" location="source" />
+	<property name="test.report.dir" location="testreport" />
+	
+	<target name="init" description="criar as pastas do projeto">
+		<mkdir dir="${build.dir}" />
+		<mkdir dir="${doc.dir}" />
+		<mkdir dir="${source.dir}" />
+		
+	</target>
+	
+	<target name="compile" description="compile java">
+		<javac srcdir="${source.dir}" destdir="${build.dir}" includeantruntime="false">	
+		</javac>		
+	</target>
+	
+	<target name="doc" description="gerar doc">
+		<javadoc sourcepath="${source.dir}" destdir="${doc.dir}">
+		</javadoc>
+	</target>
+	
+	<target name="main" depends="init, compile, doc">
+			<description>main target</description>
+	</target>
+	
+	<path id="junit.class.path">
+		<pathelement location="junit-4.12.jar"/>
+		<pathelement location="hamcrest-core-1.3.jar"/>
+		<pathelement location="${build.dir}"/>
+	</path>
+	
+	
+
+</project>
